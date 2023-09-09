@@ -1,5 +1,7 @@
 # bun-todo
 
+This is a simple todo app to play around with bun. Follow the [tutorial](https://www.youtube.com/watch?v=zNE5H6nOeCI) from Kaizen Codes to learn how to build it.
+
 To install dependencies:
 
 ```bash
@@ -9,7 +11,5 @@ bun install
 To run:
 
 ```bash
-bun run index.ts
+bun run dev
 ```
-
-This project was created using `bun init` in bun v1.0.0. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
