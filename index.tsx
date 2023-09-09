@@ -8,7 +8,10 @@ const server = Bun.serve({
 
 console.log(`Server running at http://${server.hostname}:${server.port}/`);
 
-function handler(request: Request): Response {
+type Todo = { id: number; text: string };
+const todos: Todo[] = [];
+
+async function handler(request: Request): Promise<Response> {
   const url = new URL(request.url);
   if (
     url.pathname === "/" ||
@@ -18,20 +21,23 @@ function handler(request: Request): Response {
     return new Response(Bun.file("./index.html"));
   }
   if (url.pathname === "/todos" && request.method === "POST") {
-    return new Response(renderToString(<TodoList todos={[]} />));
+    const {todo} = await request.json();
+    if(!todo?.length) return new Response("Bad Request", {status: 400});
+    todos.push({id: todos.length+1, text: todo});
+    return new Response(renderToString(<TodoList todos={todos} />));
   }
   if (url.pathname === "/todos" && request.method === "GET") {
-    return new Response(renderToString(<TodoList todos={[]} />));
+    return new Response(renderToString(<TodoList todos={todos} />));
   }
   return new Response(`Not Found: ${url}`, { status: 404 });
 }
 
-function TodoList(props: { todos: { id: number; text: string }[] }) {
+function TodoList(props: { todos: Todo[] }) {
   return (
     <ul>
       {props.todos.length ? (
         props.todos.map((todo) => (
-          <li>
+          <li key={todo.id}>
             {todo.id}: {todo.text}
           </li>
         ))
