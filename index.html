@@ -16,7 +16,9 @@
       <p>Bun+HTMX tutorial</p>
     </hgroup>
     <main class="container">
-      <form>
+      <form hx-post="/todos" hx-target="#todos" hx-ext="json-enc"
+      _="on submit target.reset()"
+      >
         <label for="todo">
           New todo
         </label>
