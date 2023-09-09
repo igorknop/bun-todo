@@ -7,7 +7,11 @@
     "dev": "bun index.tsx"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "bun-types": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
