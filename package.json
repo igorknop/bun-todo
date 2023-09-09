@@ -1,7 +1,11 @@
 {
   "name": "bun-todo",
-  "module": "index.ts",
+  "module": "index.tsx",
   "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun index.tsx"
+  },
   "devDependencies": {
     "bun-types": "latest"
   },
